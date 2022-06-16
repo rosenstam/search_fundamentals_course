@@ -161,9 +161,19 @@ def main(source_dir: str, index_name: str):
             logger.info(f'{ctr} documents indexed')
     toc = perf_counter()
     logger.info(f'Done. Total docs: {docs_indexed}.  Total time: {((toc - tic) / 60):0.3f} mins.')
+#@click.option('--workers', '-w', default=8, help="The number of workers to use to process files")
+#def main(source_dir: str, index_name: str, workers: int):
 
-    finish = perf_counter()
-    logger.info(f'Done. Total docs: {docs_indexed} in {(finish - start)/60} minutes')
+#    files = glob.glob(source_dir + "/*.xml")
+#    docs_indexed = 0
+#    start = perf_counter()
+#    with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as executor:
+#        futures = [executor.submit(index_file, file, index_name) for file in files]
+#        for future in concurrent.futures.as_completed(futures):
+#            docs_indexed += future.result()
+
+ #   finish = perf_counter()
+ #   logger.info(f'Done. Total docs: {docs_indexed} in {(finish - start)/60} minutes')
 
 if __name__ == "__main__":
     main()
