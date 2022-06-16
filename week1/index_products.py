@@ -132,7 +132,7 @@ def main(source_dir: str, index_name: str):
     #files = glob.glob(source_dir + "/products_001_2570_to_430420.xml")
     files = glob.glob(source_dir + "/*.xml")
     docs_indexed = 0
-    tic = time.perf_counter()
+    tic = perf_counter()
     for file in files:
         logger.info(f'Processing file : {file}')
         tree = etree.parse(file)
@@ -159,7 +159,7 @@ def main(source_dir: str, index_name: str):
             ctr += len(docs)
             bulk(client, docs, request_timeout=60)
             logger.info(f'{ctr} documents indexed')
-    toc = time.perf_counter()
+    toc = perf_counter()
     logger.info(f'Done. Total docs: {docs_indexed}.  Total time: {((toc - tic) / 60):0.3f} mins.')
 
     finish = perf_counter()
